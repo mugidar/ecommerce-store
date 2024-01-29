@@ -53,16 +53,15 @@ const StoreSwitcher: React.FC<StoreSwitcherProps> = ({
   };
   const { onOpen } = useStoreModal();
   return (
-    <Popover>
-      <PopoverTrigger>
-        <Button>{currentStore?.label}</Button>
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
+      <PopoverTrigger asChild>
+        <Button>{selectedStore?.label}</Button>
       </PopoverTrigger>
       <PopoverContent>
         <Command>
           <CommandInput placeholder="Type a command or search..." />
           <CommandList>
             <CommandEmpty>No results found.</CommandEmpty>
-
             <CommandGroup heading={"Your stores"}>
               {formattedItems.map((item) => (
                 <CommandItem
@@ -75,12 +74,9 @@ const StoreSwitcher: React.FC<StoreSwitcherProps> = ({
             </CommandGroup>
             <CommandSeparator />
           </CommandList>
-
           <CommandSeparator />
-
           <CommandList>
             <CommandEmpty>No results found.</CommandEmpty>
-
             <CommandGroup>
               <CommandItem onSelect={() => onOpen()}>
                 Create a new store+
