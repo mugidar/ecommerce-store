@@ -15,5 +15,5 @@ export default function Home() {
     }
   }, [isOpen, onOpen]);
 
-  return <div className="p-5">Root</div>;
+  return null
 }

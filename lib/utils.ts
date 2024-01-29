@@ -1,6 +1,13 @@
-import { type ClassValue, clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { auth } from "@clerk/nextjs";
+import { type ClassValue, clsx } from "clsx";
+import { redirect } from "next/navigation";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
+}
+
+export function isAuthed() {
+  const { userId } = auth();
+  if (!userId) redirect("/sign-in");
 }

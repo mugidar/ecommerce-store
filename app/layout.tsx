@@ -3,7 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider, UserButton } from "@clerk/nextjs";
 import ModalProvider from "@/providers/modal-provider";
-
+import { ToastContainer, toast } from "react-toastify";
+import ToastProvider from "@/providers/toast-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,11 +21,10 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>
-          <header>
-            <UserButton afterSignOutUrl="/" />
-          </header>
-          <ModalProvider/>
+        <body className={inter.className} >
+        <ToastProvider/>
+      
+          <ModalProvider />
           {children}
         </body>
       </html>
