@@ -7,7 +7,3 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function isAuthed() {
-  const { userId } = auth();
-  if (!userId) redirect("/sign-in");
-}

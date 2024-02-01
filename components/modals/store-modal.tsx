@@ -18,7 +18,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { redirect } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(4),
@@ -39,7 +38,6 @@ const StoreModal = () => {
       setIsLoading(true);
       const res = await axios.post("/api/stores", values);
       window.location.assign(`/${res.data.id}`)
-
     } catch (error) {
       toast.error("Something went wrong!");
       console.log(error);
