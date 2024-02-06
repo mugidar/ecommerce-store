@@ -45,17 +45,15 @@ const StoreSwitcher: React.FC<StoreSwitcherProps> = ({
     (item) => item.value === params.storeId
   );
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedStore, setSelectedStore] = useState(currentStore);
   const onStoreSelect = (store: { value: string; label: string }) => {
     setIsOpen(false);
-    setSelectedStore(store);
     router.push(`/${store.value}`);
   };
   const { onOpen } = useStoreModal();
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
-        <Button>{selectedStore?.label}</Button>
+        <Button>{currentStore?.label}</Button>
       </PopoverTrigger>
       <PopoverContent>
         <Command>

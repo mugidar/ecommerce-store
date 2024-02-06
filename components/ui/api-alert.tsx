@@ -1,4 +1,6 @@
-import { Copy, CopyCheck, Server } from "lucide-react";
+"use client"
+
+import { Copy, Server } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "./alert";
 import { Badge } from "./badge";
 import { Button } from "./button";
@@ -24,16 +26,16 @@ const ApiAlert: React.FC<ApiAlertProps> = ({
   variant = "public",
 }) => {
   return (
-    <Alert className="flex items-center justify-between">
+    <Alert className="flex items-center justify-between mt-5 ">
       <Server />
       <AlertTitle className="flex items-center gap-x-2">
         {title}
         <Badge variant={variantMap[variant]}>{textMap[variant]}</Badge>
       </AlertTitle>
-      <AlertDescription>
+      <AlertDescription className="flex items-center gap-5">
         <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-semibold">
           {description}
-        </code> 
+        </code>
         <Button onClick={() => {}}>
           <Copy />
         </Button>

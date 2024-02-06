@@ -9,7 +9,7 @@ const NavLinks = () => {
   const params = useParams();
   const routes = [
     { url: `/${params.storeId}/settings`, name: "settings" },
-    { url: `/${params.storeId}/fefe`, name: "fafa" },
+    { url: `/${params.storeId}/billboards`, name: "Billboards" },
   ];
 
   return (

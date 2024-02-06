@@ -21,6 +21,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import AlertModal from "@/components/modals/allert-modal";
 import ApiAlert from "@/components/ui/api-alert";
+import { useOrigin } from "@/hooks/use-origin";
 interface SettingsFormProps {
   initialData: Store;
   storeId: string;
@@ -34,6 +35,7 @@ const SettingsForm: React.FC<SettingsFormProps> = ({
   initialData,
   storeId,
 }) => {
+  const origin = useOrigin();
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm<SettingsFormValues>({
@@ -82,7 +84,10 @@ const SettingsForm: React.FC<SettingsFormProps> = ({
       </div>
       <Separator />
       <Form {...form}>
-        <form className="flex flex-col " onSubmit={form.handleSubmit(onSubmit)}>
+        <form
+          className="flex flex-col mt-5 "
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
           <FormField
             control={form.control}
             name="name"
@@ -99,12 +104,12 @@ const SettingsForm: React.FC<SettingsFormProps> = ({
               </FormItem>
             )}
           />
-          <Button className="self-start" type="submit">
+          <Button className="self-start mt-2" type="submit">
             Save
           </Button>
         </form>
       </Form>
-      <ApiAlert title="TTT" description="deradfaf" />
+      <ApiAlert title="TTT" description={`${origin}/api/${storeId}`} />
     </>
   );
 };
