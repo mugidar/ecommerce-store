@@ -21,13 +21,6 @@ const Billboards = async ({ params }: { params: { storeId: string } }) => {
   return (
     <>
       <BillboardClient data={billboards} />
-      <div>
-        {billboards.map((billboard) => (
-          <span className="bg-red-500" key={billboard.id}>
-            {billboard.label}
-          </span>
-        ))}
-      </div>
     </>
   );
 };

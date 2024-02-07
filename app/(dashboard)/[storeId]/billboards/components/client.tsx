@@ -5,7 +5,8 @@ import Heading from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { Billboard } from "@prisma/client";
 import { useParams, useRouter } from "next/navigation";
-import { BillboardColumn } from "./columns";
+import { BillboardColumn, columns } from "./columns";
+import { DataTable } from "@/components/ui/data-table";
 
 interface BillboardClientProps {
   data: BillboardColumn[];
@@ -28,6 +29,7 @@ const BillboardClient: React.FC<BillboardClientProps> = ({ data }) => {
         </Button>
       </div>
       <Separator />
+      <DataTable searchKey="label" columns={columns} data={data}/>
     </>
   );
 };
