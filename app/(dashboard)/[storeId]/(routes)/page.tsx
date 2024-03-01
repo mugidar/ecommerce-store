@@ -1,8 +1,8 @@
 import React from 'react'
 
-const DashboardPage = () => {
+const DashboardPage = ({params} : {params : {storeId: string}}) => {
   return (
-    <div>YOOOO YOU"RE ON storeId page</div>
+    <div>YOOOO YOU"RE ON {params.storeId} page</div>
   )
 }
 

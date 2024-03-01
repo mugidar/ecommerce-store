@@ -8,8 +8,9 @@ const NavLinks = () => {
   const currentPath = usePathname();
   const params = useParams();
   const routes = [
-    { url: `/${params.storeId}/settings`, name: "settings" },
+    { url: `/${params.storeId}/settings`, name: "Settings" },
     { url: `/${params.storeId}/billboards`, name: "Billboards" },
+    { url: `/${params.storeId}/categories`, name: "Categories" },
   ];
 
   return (
