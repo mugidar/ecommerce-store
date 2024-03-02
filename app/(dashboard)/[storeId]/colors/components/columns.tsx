@@ -15,8 +15,18 @@ export const columns: ColumnDef<ColorColumn>[] = [
     header: "Name",
   },
   {
+    id: "value",
     accessorKey: "value",
     header: "Value",
+    cell: ({ row }) => (
+      <div className="flex gap-2">
+        {row.original.value}{" "}
+        <span
+          className={`block w-5 h-5`}
+          style={{ backgroundColor: `${row.original.value}` }}
+        ></span>
+      </div>
+    ),
   },
   {
     accessorKey: "createdAt",

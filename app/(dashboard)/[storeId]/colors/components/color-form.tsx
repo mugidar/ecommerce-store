@@ -23,7 +23,7 @@ import { useRouter } from "next/navigation";
 import AlertModal from "@/components/modals/allert-modal";
 import { useOrigin } from "@/hooks/use-origin";
 import { useParams } from "next/navigation";
-
+import { HexColorPicker } from "react-colorful";
 interface ColorFormProps {
   initialData: Color | null;
 }
@@ -38,6 +38,7 @@ const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { storeId, colorId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
+  const [color, setColor] = useState("#00000");
   const form = useForm<ColorFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
@@ -127,15 +128,32 @@ const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
               control={form.control}
               name="value"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="w-20 h-20">
                   <FormLabel>Value</FormLabel>
                   <FormMessage />
                   <FormControl>
-                    <Input
+                    {/*  <Input
                       disabled={isLoading}
                       placeholder="Color value"
                       {...field}
-                    />
+                    /> */}
+                    <div className="flex items-center gap-5">
+                      <span>
+                        <Input
+                          type="color"
+                          color={color}
+                        
+                          className="w-16 h-16"     
+                          {...field}
+                        />
+                      </span>
+                      <div
+                        className="shadow-2xl shadow-current p-5 h-10 flex items-center rounded-xl"
+                        style={{ backgroundColor: `${field.value}` }}
+                      >
+                        {field.value}
+                      </div>
+                    </div>
                   </FormControl>
                 </FormItem>
               )}
@@ -143,7 +161,7 @@ const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
           </div>
           <Button
             disabled={isLoading}
-            className="self-start mt-5"
+            className="self-start mt-44"
             type="submit"
           >
             {action}
