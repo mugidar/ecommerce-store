@@ -11,6 +11,8 @@ const NavLinks = () => {
     { url: `/${params.storeId}/settings`, name: "Settings" },
     { url: `/${params.storeId}/billboards`, name: "Billboards" },
     { url: `/${params.storeId}/categories`, name: "Categories" },
+    { url: `/${params.storeId}/sizes`, name: "Sizes" },
+    { url: `/${params.storeId}/colors`, name: "Colors" },
   ];
 
   return (
