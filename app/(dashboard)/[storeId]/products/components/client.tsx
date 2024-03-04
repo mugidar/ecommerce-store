@@ -3,28 +3,28 @@
 import { Button } from "@/components/ui/button";
 import Heading from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
-import { Category } from "@prisma/client";
+import { Product } from "@prisma/client";
 import { useParams, useRouter } from "next/navigation";
-import { CategoryColumn, columns } from "./columns";
+import { ProductColumn, columns } from "./columns";
 import { DataTable } from "@/components/ui/data-table";
 import ApiList from "@/components/ui/api-list";
 
-interface CategoryClientProps {
-  data: CategoryColumn[];
+interface ProductClientProps {
+  data: ProductColumn[];
 }
 
-const CategoryClient: React.FC<CategoryClientProps> = ({ data }) => {
+const ProductClient: React.FC<ProductClientProps> = ({ data }) => {
   const router = useRouter();
   const params = useParams();
   return (
     <>
       <div className="flex justify-between items-center">
         <Heading
-          title={`All Categories (${data.length || 0})`}
-          description="Manage your categories"
+          title={`All Products (${data.length || 0})`}
+          description="Manage your products"
         />
         <Button
-          onClick={() => router.push(`/${params.storeId}/categories/new`)}
+          onClick={() => router.push(`/${params.storeId}/products/new`)}
         >
           Add
         </Button>
@@ -33,9 +33,9 @@ const CategoryClient: React.FC<CategoryClientProps> = ({ data }) => {
       <DataTable searchKey="name" columns={columns} data={data} />
       <Heading title="APIs" description="API calls" />
       <Separator />
-      <ApiList entityIdName="categoryId" entityName="categories"/>
+      <ApiList entityIdName="productId" entityName="products"/>
     </>
   );
 };
 
-export default CategoryClient;
+export default ProductClient;

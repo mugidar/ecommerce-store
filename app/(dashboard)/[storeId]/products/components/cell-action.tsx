@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import {  CategoryColumn } from "./columns";
+import {  ProductColumn } from "./columns";
 import { Copy, Edit2Icon, MenuIcon, Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
@@ -18,7 +18,7 @@ import AlertModal from "@/components/modals/allert-modal";
 import Heading from "@/components/ui/heading";
 
 interface CellActionProps {
-  data: CategoryColumn;
+  data: ProductColumn;
 }
 
 const CellAction: React.FC<CellActionProps> = ({ data }) => {
@@ -34,11 +34,11 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const onDelete = async () => {
     try {
       setIsLoading(true);
-      await axios.delete(`/api/${params.storeId}/categories/${data.id}`);
+      await axios.delete(`/api/${params.storeId}/products/${data.id}`);
       toast.success("Deleted.");
       router.refresh();
     } catch (error) {
-      toast.error("Existing products of this category are left.");
+      toast.error("Existing products of this product are left.");
     } finally {
       setIsLoading(false);
       setIsOpen(false);
@@ -66,7 +66,7 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() =>
-              router.push(`/${params.storeId}/categories/${data.id}`)
+              router.push(`/${params.storeId}/products/${data.id}`)
             }
             className="flex gap-3"
           >

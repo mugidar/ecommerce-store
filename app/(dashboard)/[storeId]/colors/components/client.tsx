@@ -23,9 +23,7 @@ const ColorClient: React.FC<ColorClientProps> = ({ data }) => {
           title={`Colors (${data.length || 0})`}
           description="Manage your colors"
         />
-        <Button
-          onClick={() => router.push(`/${params.storeId}/colors/new`)}
-        >
+        <Button onClick={() => router.push(`/${params.storeId}/colors/new`)}>
           Add
         </Button>
       </div>
@@ -33,7 +31,7 @@ const ColorClient: React.FC<ColorClientProps> = ({ data }) => {
       <DataTable searchKey="name" columns={columns} data={data} />
       <Heading title="APIs" description="API calls" />
       <Separator />
-      <ApiList entityIdName="colorId" entityName="colors"/>
+      <ApiList entityIdName="colorId" entityName="colors" />
     </>
   );
 };

@@ -14,7 +14,7 @@ const Navbar = async () => {
     },
   });
   return (
-    <div className="flex items-center px-10 justify-between border-b-2">
+    <div className="flex py-2 items-center px-10 justify-between border-b-2">
       <div>
         <StoreSwitcher items={stores} />
       </div>

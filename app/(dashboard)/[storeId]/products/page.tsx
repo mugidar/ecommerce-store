@@ -1,33 +1,42 @@
 import React from "react";
 import prismadb from "@/lib/prismadb";
-import { CategoryColumn } from "./components/columns";
+import { ProductColumn } from "./components/columns";
 import { format } from "date-fns";
-import CategoryClient from "./components/client";
+import ProductClient from "./components/client";
+import { formatter } from "@/lib/utils";
 
-const Categories = async ({ params }: { params: { storeId: string } }) => {
-  const categories = await prismadb.category.findMany({
+const Products = async ({ params }: { params: { storeId: string } }) => {
+  const products = await prismadb.product.findMany({
     where: {
       storeId: params.storeId,
-    },include: {
-      billboard: true
+    },
+    include: {
+      category: true,
+      size: true,
+      color: true,
     },
     orderBy: {
       createdAt: "desc",
     },
   });
 
-  
-  const formattedCategories: CategoryColumn[] = categories.map((item) => ({
+  const formattedProducts: ProductColumn[] = products.map((item) => ({
     id: item.id,
     name: item.name,
-    billboardLabel: item.billboard.label,
+    color: item.color.value,
+    sizeShortName: item.size.value,
+    size: item.size.name,
+    isArchived: item.isArchived,
+    isFeatured: item.isFeatured,
+    price: formatter.format(item.price.toNumber()),
+    category: item.category.name,
     createdAt: format(item.createdAt, "MMMM do, yyyy"),
   }));
   return (
     <>
-      <CategoryClient data={formattedCategories} />
+      <ProductClient data={formattedProducts} />
     </>
   );
 };
 
-export default Categories;
+export default Products;

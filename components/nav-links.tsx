@@ -8,11 +8,13 @@ const NavLinks = () => {
   const currentPath = usePathname();
   const params = useParams();
   const routes = [
-    { url: `/${params.storeId}/settings`, name: "Settings" },
+    { url: `/${params.storeId}/`, name: "Store page" },
+    { url: `/${params.storeId}/products`, name: "Products" },
     { url: `/${params.storeId}/billboards`, name: "Billboards" },
     { url: `/${params.storeId}/categories`, name: "Categories" },
     { url: `/${params.storeId}/sizes`, name: "Sizes" },
     { url: `/${params.storeId}/colors`, name: "Colors" },
+    { url: `/${params.storeId}/settings`, name: "Settings" },
   ];
 
   return (
@@ -23,7 +25,7 @@ const NavLinks = () => {
             className={twMerge(
               "p-2 hover:text-primary/50 transition ",
               currentPath == route.url &&
-                "bg-red-400 font-bold text-black dark:text-white"
+                "bg-neutral-400/50 rounded-xl font-bold text-black dark:text-white"
             )}
             key={route.url}
             href={route.url}

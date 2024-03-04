@@ -7,7 +7,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {  ColorColumn } from "./columns";
+import { ColorColumn } from "./columns";
 import { Copy, Edit2Icon, MenuIcon, Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
@@ -63,9 +63,7 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
             Delete
           </DropdownMenuItem>
           <DropdownMenuItem
-            onClick={() =>
-              router.push(`/${params.storeId}/colors/${data.id}`)
-            }
+            onClick={() => router.push(`/${params.storeId}/colors/${data.id}`)}
             className="flex gap-3"
           >
             <Edit2Icon />
@@ -77,7 +75,6 @@ const CellAction: React.FC<CellActionProps> = ({ data }) => {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      
     </>
   );
 };

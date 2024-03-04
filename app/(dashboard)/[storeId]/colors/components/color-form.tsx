@@ -38,7 +38,7 @@ const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { storeId, colorId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const [color, setColor] = useState("#00000");
+  const [color, setColor] = useState("#000000");
   const form = useForm<ColorFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
@@ -142,16 +142,16 @@ const ColorForm: React.FC<ColorFormProps> = ({ initialData }) => {
                         <Input
                           type="color"
                           color={color}
-                        
+                          defaultValue={color}
                           className="w-16 h-16"     
                           {...field}
                         />
                       </span>
                       <div
-                        className="shadow-2xl shadow-current p-5 h-10 flex items-center rounded-xl"
-                        style={{ backgroundColor: `${field.value}` }}
+                        className="border-2 border-black text-white shadow-2xl shadow-current p-5 h-10 flex items-center rounded-xl"
+                        style={{ backgroundColor: `${field.value || color}` }}
                       >
-                        {field.value}
+                        {field.value || color}
                       </div>
                     </div>
                   </FormControl>

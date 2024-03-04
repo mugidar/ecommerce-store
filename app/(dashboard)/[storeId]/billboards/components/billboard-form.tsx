@@ -59,9 +59,9 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
       if (initialData) {
         await axios.patch(`/api/${storeId}/billboards/${billboardId}`, values);
       } else {
-        await axios.post(`/api/${storeId}/billboards`, values);
+        await axios.post(`/api/${storeId}/billboards`, values);     form.reset()
       }
-      form.reset()
+ 
       toast.success(toastMessage);
       router.refresh();
     } catch (error) {
