@@ -10,6 +10,7 @@ const NavLinks = () => {
   const routes = [
     { url: `/${params.storeId}/`, name: "Store page" },
     { url: `/${params.storeId}/products`, name: "Products" },
+    { url: `/${params.storeId}/orders`, name: "Orders" },
     { url: `/${params.storeId}/billboards`, name: "Billboards" },
     { url: `/${params.storeId}/categories`, name: "Categories" },
     { url: `/${params.storeId}/sizes`, name: "Sizes" },

@@ -1,5 +1,5 @@
 "use client";
-import { Billboard, Category, Store } from "@prisma/client";
+import { Billboard, Order, Store } from "@prisma/client";
 import React, { useState } from "react";
 import { Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -33,44 +33,42 @@ import { useOrigin } from "@/hooks/use-origin";
 import ImageUpload from "@/components/ui/image-upload";
 import { useParams } from "next/navigation";
 
-interface CategoryFormProps {
-  initialData: Category | null;
-  billboards: Billboard[];
+interface OrderFormProps {
+  initialData: Order | null;
+
 }
 const formSchema = z.object({
   name: z.string(),
-  billboardId: z.string(),
 });
-type CategoryFormValues = z.infer<typeof formSchema>;
+type OrderFormValues = z.infer<typeof formSchema>;
 
-const CategoryForm: React.FC<CategoryFormProps> = ({
+const OrderForm: React.FC<OrderFormProps> = ({
   initialData,
-  billboards,
 }) => {
   const origin = useOrigin();
   const [isOpen, setIsOpen] = useState(false);
-  const { storeId, categoryId } = useParams();
+  const { storeId, orderId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const form = useForm<CategoryFormValues>({
+  const form = useForm<OrderFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
       name: "",
-      billboardId: "",
+
     },
   });
-  const title = initialData ? "Edit category" : "Create category";
-  const description = initialData ? "Edit category" : "Add a new category";
-  const toastMessage = initialData ? "Category updated" : "Category created";
+  const title = initialData ? "Edit order" : "Create order";
+  const description = initialData ? "Edit order" : "Add a new order";
+  const toastMessage = initialData ? "Order updated" : "Order created";
   const action = initialData ? "Save changes" : "Create";
 
   const router = useRouter();
-  const onSubmit = async (values: CategoryFormValues) => {
+  const onSubmit = async (values: OrderFormValues) => {
     try {
       setIsLoading(true);
       if (initialData) {
-        await axios.patch(`/api/${storeId}/categories/${categoryId}`, values);
+        await axios.patch(`/api/${storeId}/orders/${orderId}`, values);
       } else {
-        await axios.post(`/api/${storeId}/categories`, values);
+        await axios.post(`/api/${storeId}/orders`, values);
         form.reset();
       }
       
@@ -85,16 +83,16 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
   const onDelete = async () => {
     try {
       setIsLoading(true);
-      await axios.delete(`/api/${storeId}/categories/${categoryId}`);  form.reset()
+      await axios.delete(`/api/${storeId}/orders/${orderId}`);  form.reset()
       toast.success("Deleted.");
       router.refresh();
     } catch (error) {
-      toast.error("Existing categories are left.");
+      toast.error("Existing orders are left.");
     } finally {
       setIsLoading(false);
     }
   };
-  console.log(billboards)
+
   return (
     <>
       <AlertModal
@@ -128,7 +126,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
                   <FormControl>
                     <Input
                       disabled={isLoading}
-                      placeholder="Category name"
+                      placeholder="Order name"
                       {...field}
                     />
                   </FormControl>
@@ -184,4 +182,4 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
   );
 };
 
-export default CategoryForm;
+export default OrderForm;

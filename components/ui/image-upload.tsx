@@ -23,10 +23,13 @@ const ImageUpload = ({ disabled, onChange, onRemove, value }) => {
 
   return (
     <div>
-      <div>
-        {value.map((url) => (
-          <div className="relative w-[240px] h-[180px]" key={url}>
+      <div className="flex gap-5 mb-5">
+        {value.map((url: string, index) => (
+          
+          <div className="relative w-[240px] h-[180px]  rounded-lg " key={url}>
+            
             <div className="absolute right-0 top-0 z-10 m-2">
+              
               <Button
                 type="button"
                 variant={"destructive"}
@@ -35,7 +38,8 @@ const ImageUpload = ({ disabled, onChange, onRemove, value }) => {
                 <Trash2 />
               </Button>
             </div>
-            <Image alt="" src={url} fill className="object-fit " />
+            <Image alt="" src={url} fill className="object-cover rounded-xl" />
+            
           </div>
         ))}
       </div>

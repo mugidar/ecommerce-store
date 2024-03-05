@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import {  CategoryColumn } from "./columns";
+import {  OrderColumn } from "./columns";
 import { Copy, Edit2Icon, MenuIcon, Trash2 } from "lucide-react";
 import toast from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
@@ -18,7 +18,7 @@ import AlertModal from "@/components/modals/allert-modal";
 import Heading from "@/components/ui/heading";
 
 interface CellActionProps {
-  data: CategoryColumn;
+  data: OrderColumn;
 }
 
 const CellAction: React.FC<CellActionProps> = ({ data }) => {
