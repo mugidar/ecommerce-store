@@ -1,5 +1,5 @@
 import { auth } from "@clerk/nextjs";
-import { type ClassValue, clsx } from "clsx";
+  import { type ClassValue, clsx } from "clsx";
 import { redirect } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 

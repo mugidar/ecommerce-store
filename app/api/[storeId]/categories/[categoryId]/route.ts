@@ -14,6 +14,7 @@ export async function GET(
 
     const category = await prismadb.category.findUnique({
       where: { id: categoryId },
+      include: { billboard: true },
     });
 
     return NextResponse.json(category);
@@ -37,7 +38,6 @@ export const PATCH = async (
     if (!billboardId)
       return new NextResponse("billboardId is required", { status: 400 });
     if (!categoryId)
-
       return new NextResponse("categoryId is required", { status: 400 });
     const storeByUserId = await prismadb.store.findFirst({
       where: {
@@ -79,7 +79,7 @@ export const DELETE = async (
       return new NextResponse("StoreId is required", { status: 400 });
     if (!categoryId)
       return new NextResponse("categoryId is required", { status: 400 });
-    
+
     const storeByUserId = await prismadb.store.findFirst({
       where: {
         id: storeId,

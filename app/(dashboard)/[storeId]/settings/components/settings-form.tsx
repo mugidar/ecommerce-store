@@ -109,7 +109,7 @@ const SettingsForm: React.FC<SettingsFormProps> = ({
           </Button>
         </form>
       </Form>
-      <ApiAlert title="TTT" description={`${origin}/api/${storeId}`} />
+      <ApiAlert title="NEXT_PUBLIC_API_URL" description={`${origin}/api/${storeId}`} />
     </>
   );
 };
