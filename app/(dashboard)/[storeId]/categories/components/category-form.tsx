@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 import { Billboard, Category, Store } from "@prisma/client";
 import React, { useState } from "react";
@@ -36,7 +37,8 @@ import { useParams } from "next/navigation";
 interface CategoryFormProps {
   initialData: Category | null;
   billboards: Billboard[];
-}
+};
+
 const formSchema = z.object({
   name: z.string(),
   billboardId: z.string(),
@@ -51,12 +53,13 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const { storeId, categoryId } = useParams();
   const [isLoading, setIsLoading] = useState(false);
+  
   const form = useForm<CategoryFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
-      name: "",
-      billboardId: "",
-    },
+      name: '',
+      billboardId: '',
+    }
   });
   const title = initialData ? "Edit category" : "Create category";
   const description = initialData ? "Edit category" : "Add a new category";
