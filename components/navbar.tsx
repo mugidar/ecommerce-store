@@ -4,6 +4,7 @@ import NavLinks from "./nav-links";
 import StoreSwitcher from "./store-switcher";
 import prismadb from "@/lib/prismadb";
 import { redirect } from "next/navigation";
+import { ThemeToggle } from "./theme-toggle";
 
 const Navbar = async () => {
   const { userId } = auth();
@@ -21,7 +22,8 @@ const Navbar = async () => {
       <div>
         <NavLinks />
       </div>
-      <UserButton showName afterSignOutUrl="/" />
+      <ThemeToggle/>
+      <UserButton showName afterSignOutUrl="/"  />
     </div>
   );
 };
