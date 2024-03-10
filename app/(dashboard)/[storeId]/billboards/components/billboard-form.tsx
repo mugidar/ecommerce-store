@@ -27,7 +27,7 @@ import ImageUpload from "@/components/ui/image-upload";
 import { useParams } from "next/navigation";
 interface BillboardFormProps {
   initialData: Billboard | null;
-  storeId: string;
+  
 }
 const formSchema = z.object({
   label: z.string(),
@@ -115,7 +115,7 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
                 <FormControl>
                   <ImageUpload
                     disabled={isLoading}
-                    onChange={(url) => field.onChange(url)}
+                    onChange={(url: string) => field.onChange(url)}
                     onRemove={() => field.onChange("")}
                     value={field.value ? [field.value] : []}
                   />
