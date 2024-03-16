@@ -9,11 +9,13 @@ import { ThemeToggle } from "./theme-toggle";
 const Navbar = async () => {
   const { userId } = auth();
   if (!userId) redirect("/sign-in");
+  
   const stores = await prismadb.store.findMany({
     where: {
       userId,
     },
   });
+
   return (
     <div className="flex py-2 items-center px-10 justify-between border-b-2">
       <div>

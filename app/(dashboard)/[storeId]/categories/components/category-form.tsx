@@ -56,7 +56,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
   
   const form = useForm<OrderFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: 'name' in initialData ? { name: initialData.name } : { name: "" },
+    defaultValues: initialData ? { name: initialData.name } : { name: "" },
   });
   const title = initialData ? "Edit category" : "Create category";
   const description = initialData ? "Edit category" : "Add a new category";

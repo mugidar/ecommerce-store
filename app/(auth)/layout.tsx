@@ -7,7 +7,6 @@ export default function AuthLayout({
 }) {
   return (
     <div>
-      <header>Header</header>
       {children}
     </div>
   );
